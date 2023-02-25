@@ -10,6 +10,13 @@
       <li class="docs-header__menu-add docs-header__menu-add--mobile">
         {% include 'components/button.twig' with {icon: 'plus', size: 'small', url: '/page/new'} %}
       </li>
+    {% else %}
+      <li class="docs-header__menu-add docs-header__menu-add--desktop">
+        {% include 'components/button.twig' with {label: 'Login', icon: 'login', size: 'small', url: '/auth'} %}
+      </li>
+      <li class="docs-header__menu-add docs-header__menu-add--mobile">
+        {% include 'components/button.twig' with {icon: 'login', size: 'small', url: '/auth'} %}
+      </li>
     {% endif %}
     {% for option in config.menu %}
       <li>
