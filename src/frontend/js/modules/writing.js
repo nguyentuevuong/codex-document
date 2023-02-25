@@ -51,9 +51,15 @@ export default class Writing {
     this.loadEditor().then((editor) => {
       this.editor = editor;
     });
-
-    window.onbeforeunload = (e) => {
-      return '';
+    
+    // if create mode
+    if (!this.page) {
+      window.onbeforeunload = (e) => {
+        return '';
+      }
+    } else {
+      // auto save when exist data
+      setInterval(() => this.saveButtonClicked(), 3000);
     }
 
     /**
@@ -163,7 +169,9 @@ export default class Writing {
         response = await response.json();
 
         if (response.success) {
-          window.location.pathname = response.result.uri ? response.result.uri : '/page/' + response.result._id;
+          if (!this.page) {
+            window.location.pathname = response.result.uri ? response.result.uri : '/page/' + response.result._id;
+          }
         } else {
           alert(response.error);
           console.log('Validation failed:', response.error);
