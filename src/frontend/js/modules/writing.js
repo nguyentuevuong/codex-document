@@ -170,7 +170,8 @@ export default class Writing {
 
         if (response.success) {
           if (!this.page) {
-            window.location.pathname = response.result.uri ? response.result.uri : '/page/' + response.result._id;
+            // if first create page, reload with this result
+            window.location.pathname = response.result.uri ? response.result.uri : '/page/edit/' + response.result._id;
           }
         } else {
           alert(response.error);
