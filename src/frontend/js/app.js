@@ -53,3 +53,6 @@ class Docs {
 }
 
 export default new Docs();
+
+// disable context menu
+window.addEventListener('contextmenu', e => e.preventDefault())
